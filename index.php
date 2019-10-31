@@ -2,7 +2,7 @@
 
 print '<a href="http://suzdalenko.com">Suzdalenko</a><br><br>';
 
-$xml = simplexml_load_file('http://www.kasparov.ru/rss/policy.xml');
+$xml = simplexml_load_file('http://www.kasparov.ru/rss/');
 
 for($i=0;$i<=49;$i++){
 
