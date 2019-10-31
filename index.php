@@ -1,28 +1,19 @@
 <?php
 
-print '<a href="http://suzdalenko.com">Suzdalenko</a><br><br>';
+ require __DIR__.'/parser.php';
 
-$xml = simplexml_load_file('http://www.kasparov.ru/rss/');
+ $uri  = 'http://www.kasparov.ru/rss/';
+ $uri2 = 'https://rss.nytimes.com/services/xml/rss/nyt/World.xml';
+ $uri3 = 'https://graniru.org/export/all-rss2.xml';
 
-for($i=0;$i<=49;$i++){
+ echo '<a href="http://suzdalenko.com">http://suzdalenko.com</a><br><br>';
 
+ print (new Parser())->go($uri);
 
-   $data = $xml->channel[0]->item[$i]->pubDate;
-   $img =  $xml->channel[0]->item[$i]->enclosure['url'];
-   $title = $xml->channel[0]->item[$i]->title;
-   $title = preg_replace( '/"([^"]*)"/', "«$1»", $title );
-   $ssilka =  $xml->channel[0]->item[$i]->link;
-   $description = $xml->channel[0]->item[$i]->description;
+ print (new Parser())->go($uri2);
 
-     echo   $data .        '<br>'.
-            $title  .      '<br>'.
-            $description . '<br>'.
-
-             '<a href="'.$ssilka.'">'.$ssilka.'</a>   <br>            
-              <img class="mi_img" src="'.$img .'"><br><br>';
-
-   };
+ print (new Parser())->go($uri3);
 
 
-   
+
 ?>
